@@ -1,0 +1,10 @@
+# Command to generate generated locales
+# flutter pub run easy_localization:generate --source-dir ./assets/translations --output-dir ./lib/core/generated -o locale_keys.g.dart -f keys
+
+targets:
+  $default:
+    builders:
+      easy_localization_generator:
+        options:
+          source_dir: assets/translations
+          output_dir: lib/core/generated
