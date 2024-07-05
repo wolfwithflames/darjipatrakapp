@@ -1,5 +1,7 @@
+import 'package:device_preview/device_preview.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 
@@ -30,7 +32,12 @@ Future<void> main() async {
       path:
           'assets/translations', // <-- change the path of the translation files
       fallbackLocale: const Locale('gu', 'IN'),
-      child: const MyApp(),
+      child: DevicePreview(
+        enabled: kDebugMode,
+        builder: (context) {
+          return const MyApp();
+        },
+      ),
     ),
   );
 }

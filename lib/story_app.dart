@@ -11,6 +11,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
+      useInheritedMediaQuery: true,
       localizationsDelegates: context.localizationDelegates, // <-- add this
       supportedLocales: context.supportedLocales, // <-- add this
       locale: context.locale, // <-- add this

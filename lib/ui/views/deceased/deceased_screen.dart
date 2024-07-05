@@ -30,12 +30,9 @@ class DeceasedScreen extends StatelessWidget {
               },
               onRefresh: model.onRefresh,
               onLoading: model.hasNext ? model.onLoad : null,
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                mainAxisSpacing: 15,
-                crossAxisSpacing: 15,
-                childAspectRatio: 0.73,
-              ),
+              crossAxisCount: 2,
+              mainAxisSpacing: 15,
+              crossAxisSpacing: 15,
             ),
           ),
         );

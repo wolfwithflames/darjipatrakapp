@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 import '../../core/data/enums.dart';
@@ -8,7 +9,6 @@ import 'loader_view.dart';
 import 'no_data_view.dart';
 
 class AppRefreshGridView extends StatelessWidget {
-  final SliverGridDelegate gridDelegate;
   final void Function()? onRefresh;
   final void Function()? onSearch;
   final Function()? onLoading;
@@ -26,6 +26,9 @@ class AppRefreshGridView extends StatelessWidget {
   final String noDataText;
   final bool? showClearSearch;
   final ApiResponseStatus snapshotStatus;
+  final int crossAxisCount;
+  final double mainAxisSpacing;
+  final double crossAxisSpacing;
 
   const AppRefreshGridView({
     super.key,
@@ -45,7 +48,9 @@ class AppRefreshGridView extends StatelessWidget {
     this.searchController,
     this.showClearSearch = false,
     this.snapshotStatus = ApiResponseStatus.success,
-    required this.gridDelegate,
+    required this.crossAxisCount,
+    required this.mainAxisSpacing,
+    required this.crossAxisSpacing,
   });
 
   @override
@@ -149,15 +154,17 @@ class AppRefreshGridView extends StatelessWidget {
 
   Widget _listBuilder(BuildContext context) {
     return itemCount != 0
-        ? GridView.builder(
+        ? MasonryGridView.count(
+            crossAxisCount: crossAxisCount,
+            mainAxisSpacing: mainAxisSpacing,
+            crossAxisSpacing: crossAxisSpacing,
             itemBuilder: itemBuilder,
-            itemCount: itemCount,
-            controller: scrollController,
+            padding: padding,
             shrinkWrap: shrinkWrap,
             physics: const ClampingScrollPhysics(),
             scrollDirection: scrollDirection,
-            padding: padding,
-            gridDelegate: gridDelegate,
+            itemCount: itemCount,
+            controller: scrollController,
           )
         : NoDataView(
             noDataText: noDataText,

@@ -35,16 +35,29 @@ class DeceasedItemView extends StatelessWidget {
           const SizedBox(height: 10),
           Container(
             decoration: BoxDecoration(
-              borderRadius:
-                  BorderRadius.circular(Constants.defaultBorderRadius),
+              borderRadius: BorderRadius.circular(
+                Constants.defaultBorderRadius,
+              ),
+              border: Border.all(
+                width: 2,
+                color: AppColors.secondaryColor,
+              ),
             ),
-            height: 120,
-            width: double.maxFinite,
+            height: 150,
+            width: 130,
             clipBehavior: Clip.hardEdge,
-            child: ImageView(
-              deceased.photoUrl,
-              ImageType.url,
-              fit: BoxFit.fitHeight,
+            child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(
+                  Constants.defaultBorderRadius - 2,
+                ),
+              ),
+              clipBehavior: Clip.hardEdge,
+              child: ImageView(
+                deceased.photoUrl,
+                ImageType.url,
+                fit: BoxFit.cover,
+              ),
             ),
           ),
           const SizedBox(height: 10),
@@ -62,6 +75,7 @@ class DeceasedItemView extends StatelessWidget {
             deceased.placeOfBirth,
             fontFamily: Constants.notoSansGujarati,
             fontWeight: FontWeight.w700,
+            fontSize: 16,
           )
         ],
       ),
