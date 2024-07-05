@@ -7,7 +7,7 @@ import '../../../getIt.dart';
 import '../../view_model/app_base_model.dart';
 import '../../widgets/toast.dart';
 
-class DeceasedViewModel extends AppBaseViewModel {
+class DeceasedListViewModel extends AppBaseViewModel {
   final _deceasedRepository = getIt<DeceasedRepository>();
   final List<Deceased> _deceased = [];
   List<Deceased> get deceased => _deceased;
@@ -62,4 +62,6 @@ class DeceasedViewModel extends AppBaseViewModel {
     await fetchDeceasedList(isRefresh: true);
     refreshController.refreshCompleted();
   }
+
+  onDeceasedPressed(Deceased p1) {}
 }

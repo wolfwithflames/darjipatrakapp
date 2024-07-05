@@ -16,7 +16,7 @@ class AppWrapperViewModel extends BaseViewModel {
       hardwareInfoService.init(),
     ]);
     await Future.delayed(const Duration(seconds: 3), () {
-      getIt<AppRouter>().replaceNamed(Routes.deceased);
+      getIt<AppRouter>().replaceNamed(Routes.deceasedList);
     });
   }
 }

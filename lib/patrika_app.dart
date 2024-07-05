@@ -2,6 +2,7 @@ import 'package:bot_toast/bot_toast.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
+import '/ui/shared/themes.dart' as themes;
 import 'core/router/router.dart';
 import 'getIt.dart';
 
@@ -11,7 +12,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      useInheritedMediaQuery: true,
+      theme: themes.primaryMaterialTheme,
+      darkTheme: themes.darkMaterialTheme,
+      themeMode: ThemeMode.light,
       localizationsDelegates: context.localizationDelegates, // <-- add this
       supportedLocales: context.supportedLocales, // <-- add this
       locale: context.locale, // <-- add this
