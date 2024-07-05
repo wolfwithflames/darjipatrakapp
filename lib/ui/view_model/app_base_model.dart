@@ -12,8 +12,9 @@ class AppBaseViewModel extends BaseViewModel {
   ApiResponseStatus get apiResponseStatus => _apiResponseStatus;
 
   ViewState _viewState = ViewState.ideal;
-
   ViewState get viewState => _viewState;
+
+  bool errorFetchingData = false;
 
   setViewState(ViewState viewState) {
     if (viewState != _viewState) {
@@ -32,6 +33,13 @@ class AppBaseViewModel extends BaseViewModel {
   setIdealState() {
     if (viewState != ViewState.ideal) {
       setViewState(ViewState.ideal);
+      notifyListeners();
+    }
+  }
+
+  setSuccessApiResponseState() {
+    if (_apiResponseStatus != ApiResponseStatus.success) {
+      setApiResponseStatus(ApiResponseStatus.success);
       notifyListeners();
     }
   }

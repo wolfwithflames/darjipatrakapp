@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/material.dart';
 
 import '../../ui/views/app_navigator/app_navigator.dart';
 import '../../ui/views/app_wrapper/app_wrapper_screen.dart';

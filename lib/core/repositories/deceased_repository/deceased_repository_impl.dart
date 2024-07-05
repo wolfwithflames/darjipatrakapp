@@ -18,7 +18,7 @@ class DeceasedRepositoryImpl implements DeceasedRepository {
   final connectivityService = getIt<ConnectivityService>();
 
   @override
-  Future<ApiResponse<List<Deceased>>> getDeceased(
+  Future<ApiResponse<List<Deceased>>> getDeceasedList(
       {int page = 1, int limit = Constants.paginationLimit}) async {
     try {
       // if (await connectivityService.isConnected) {
@@ -28,6 +28,29 @@ class DeceasedRepositoryImpl implements DeceasedRepository {
       );
       // await localDataSource.cacheDeceaseds(posts.data);
       return posts;
+      // } else {
+      //   final posts = await localDataSource.fetchDeceased();
+      //   return ApiResponse<List<Deceased>>(
+      //     status: true,
+      //     data: posts,
+      //   );
+      // }
+    } on NetworkException catch (e) {
+      throw RepositoryException(e.message);
+    } on CacheException catch (e) {
+      throw RepositoryException(e.message);
+    }
+  }
+
+  @override
+  Future<ApiResponse<Deceased>> getDeceasedDetails({required String id}) async {
+    try {
+      // if (await connectivityService.isConnected) {
+      final post = await remoteDataSource.fetchDeceasedDetails(
+        id: id,
+      );
+      // await localDataSource.cacheDeceaseds(posts.data);
+      return post;
       // } else {
       //   final posts = await localDataSource.fetchDeceased();
       //   return ApiResponse<List<Deceased>>(
