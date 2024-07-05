@@ -3,6 +3,7 @@ import '../../../core/exceptions/repository_exception.dart';
 import '../../../core/logger/app_logger.dart';
 import '../../../core/models/deceased/deceased.dart';
 import '../../../core/repositories/deceased_repository/deceased_repository.dart';
+import '../../../core/router/router.dart';
 import '../../../getIt.dart';
 import '../../view_model/app_base_model.dart';
 import '../../widgets/toast.dart';
@@ -15,9 +16,6 @@ class DeceasedListViewModel extends AppBaseViewModel {
   /// Pagination
   int page = 1;
   bool hasNext = true;
-
-  bool _errorFetchingUser = false;
-  bool get errorFetchingUser => _errorFetchingUser;
 
   Future<void> onLoad() async {
     page++;
@@ -36,7 +34,7 @@ class DeceasedListViewModel extends AppBaseViewModel {
   }) async {
     setViewState(ViewState.busy);
     try {
-      final response = await _deceasedRepository.getDeceased(page: pageNo);
+      final response = await _deceasedRepository.getDeceasedList(page: pageNo);
       if (response.status) {
         if (isRefresh) {
           hasNext = true;
@@ -52,7 +50,7 @@ class DeceasedListViewModel extends AppBaseViewModel {
       }
     } on RepositoryException catch (e) {
       AppLog.e(e.message);
-      _errorFetchingUser = true;
+      errorFetchingData = true;
     }
 
     setIdealState();
@@ -63,5 +61,9 @@ class DeceasedListViewModel extends AppBaseViewModel {
     refreshController.refreshCompleted();
   }
 
-  onDeceasedPressed(Deceased p1) {}
+  onDeceasedPressed(Deceased deceased) {
+    getIt<AppRouter>().push(
+      DeceasedDetailsRoute(id: deceased.id),
+    );
+  }
 }

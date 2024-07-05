@@ -33,6 +33,10 @@ class Relative extends HiveObject {
     return _$RelativeFromJson(json);
   }
 
+  String get nameWithRelation => "$fullName ($relationship)";
+
+  String get fullName => "${name?.first} ${name?.last}";
+
   Map<String, dynamic> toJson() => _$RelativeToJson(this);
 
   Relative copyWith({

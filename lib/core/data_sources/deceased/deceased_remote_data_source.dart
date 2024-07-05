@@ -8,6 +8,7 @@ import '../../services/http/http_service.dart';
 
 abstract class DeceasedRemoteDataSource {
   Future<ApiResponse<List<Deceased>>> fetchDeceased({int page, int limit});
+  Future<ApiResponse<Deceased>> fetchDeceasedDetails({required String id});
 }
 
 class DeceasedRemoteDataSourceImpl implements DeceasedRemoteDataSource {
@@ -23,9 +24,22 @@ class DeceasedRemoteDataSourceImpl implements DeceasedRemoteDataSource {
       "page": page,
       "limit": limit,
     }) as Map<String, dynamic>;
-    AppLog.prettyPrint(postsMap);
 
     return ApiResponse.fromJson(postsMap,
         (data) => (data as List).map((e) => Deceased.fromJson(e)).toList());
+  }
+
+  @override
+  Future<ApiResponse<Deceased>> fetchDeceasedDetails(
+      {required String id}) async {
+    final postsMap = await httpService.getHttp(
+      "${ApiRoutes.deceased}/$id",
+    ) as Map<String, dynamic>;
+    AppLog.prettyPrint(postsMap);
+
+    return ApiResponse.fromJson(
+      postsMap,
+      (data) => Deceased.fromJson(data),
+    );
   }
 }
