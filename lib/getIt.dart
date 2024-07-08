@@ -3,10 +3,14 @@ import 'package:hive/hive.dart';
 
 import 'core/data_sources/deceased/deceased_local_data_source.dart';
 import 'core/data_sources/deceased/deceased_remote_data_source.dart';
+import 'core/data_sources/graduated_students/graduated_students_local_data_source.dart';
+import 'core/data_sources/graduated_students/graduated_students_remote_data_source.dart';
 import 'core/data_sources/story/story_remote_data_source.dart';
 import 'core/data_sources/users/users_remote_data_source.dart';
 import 'core/repositories/deceased_repository/deceased_repository.dart';
 import 'core/repositories/deceased_repository/deceased_repository_impl.dart';
+import 'core/repositories/graduated_students_repository/graduated_students_repository.dart';
+import 'core/repositories/graduated_students_repository/graduated_students_repository_impl.dart';
 import 'core/repositories/story_repository/story_repository.dart';
 import 'core/repositories/story_repository/story_repository_impl.dart';
 import 'core/repositories/users_repository/users_repository.dart';
@@ -48,12 +52,18 @@ Future<void> initGetit() async {
       () => DeceasedRemoteDataSourceImpl());
   getIt.registerLazySingleton<DeceasedLocalDataSource>(
       () => DeceasedLocalDataSourceImpl());
+  getIt.registerLazySingleton<GraduatedStudentsLocalDataSource>(
+      () => GraduatedStudentsLocalDataSourceImpl());
+  getIt.registerLazySingleton<GraduatedStudentsRemoteDataSource>(
+      () => GraduatedStudentsRemoteDataSourceImpl());
   getIt.registerLazySingleton<StoryRemoteDataSource>(
       () => StoryRemoteDataSourceImpl());
 
   /// Repositories
   getIt.registerLazySingleton<DeceasedRepository>(
       () => DeceasedRepositoryImpl());
+  getIt.registerLazySingleton<GraduatedStudentsRepository>(
+      () => GraduatedStudentsRepositoryImpl());
   getIt.registerLazySingleton<UsersRepository>(() => UsersRepositoryImpl());
   getIt.registerLazySingleton<StoryRepository>(() => StoryRepositoryImpl());
 
