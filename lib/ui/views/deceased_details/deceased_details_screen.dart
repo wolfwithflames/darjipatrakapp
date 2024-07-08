@@ -39,6 +39,12 @@ class DeceasedDetailsScreen extends StatelessWidget {
               itemBuilder: (context, index) {
                 return Column(
                   children: [
+                    TextView(
+                      LocaleKeys.inLovinMemory.tr(),
+                      fontSize: 26,
+                      fontWeight: FontWeight.w700,
+                    ),
+                    const SizedBox(height: 15),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [

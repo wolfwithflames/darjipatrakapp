@@ -22,21 +22,21 @@ class DeceasedLocalDataSourceImpl implements DeceasedLocalDataSource {
   final _hiveService = getIt<HiveInterface>();
 
   bool get _isBoxOpen => _hiveService.isBoxOpen(LocalStorageKeys.deceased);
-  Box<Deceased> get _deceasedBox =>
+  Box<Deceased> get _postsBox =>
       _hiveService.box<Deceased>(LocalStorageKeys.deceased);
 
   @override
   Future<void> init() async {
     final path = await _fileHelper.getApplicationDocumentsDirectoryPath();
     _hiveService.init(path);
+    if (!Hive.isAdapterRegistered(HiveTypes.deceased)) {
+      Hive.registerAdapter(DeceasedAdapter());
+    }
     if (!Hive.isAdapterRegistered(HiveTypes.name)) {
       Hive.registerAdapter(NameAdapter());
     }
     if (!Hive.isAdapterRegistered(HiveTypes.relative)) {
       Hive.registerAdapter(RelativeAdapter());
-    }
-    if (!Hive.isAdapterRegistered(HiveTypes.deceased)) {
-      Hive.registerAdapter(DeceasedAdapter());
     }
 
     if (!_isBoxOpen) {
@@ -46,24 +46,22 @@ class DeceasedLocalDataSourceImpl implements DeceasedLocalDataSource {
 
   @override
   Future<List<Deceased>> fetchDeceased() async {
-    if (_deceasedBox.isEmpty) {
+    if (_postsBox.isEmpty) {
       throw const CacheException('No Deceased found in cache');
     }
 
-    return _deceasedBox.values
-        .map<Deceased>(
-          (deceased) => Deceased.fromJson(deceased.toJson()),
-        )
+    return _postsBox.values
+        .map<Deceased>((deceased) => Deceased.fromJson(deceased.toJson()))
         .toList();
   }
 
   @override
-  Future<void> cacheDeceaseds(List<Deceased> deceaseds) async {
-    final deceasedMap = <String, Deceased>{};
-    for (var decease in deceaseds) {
-      deceasedMap.addAll({decease.id: decease});
+  Future<void> cacheDeceaseds(List<Deceased> posts) async {
+    final postsMap = <String, Deceased>{};
+    for (var post in posts) {
+      postsMap.addAll({post.id: post});
     }
 
-    await _deceasedBox.putAll(deceasedMap);
+    await _postsBox.putAll(postsMap);
   }
 }
