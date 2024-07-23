@@ -32,7 +32,7 @@ class GraduatedStudentsLocalDataSourceImpl
       List<GraduatedStudentModel> draduatedStudentModel) async {
     final graduatedMap = <String, GraduatedStudentModel>{};
     for (var graduated in draduatedStudentModel) {
-      graduatedMap.addAll({graduated.id: graduated});
+      graduatedMap.addAll({graduated.id!: graduated});
     }
 
     await _studentsBox.putAll(graduatedMap);

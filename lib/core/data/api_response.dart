@@ -13,7 +13,7 @@ class ApiResponse<T> {
   factory ApiResponse.fromJson(
       Map<String, dynamic> json, Function(dynamic) create) {
     return ApiResponse<T>(
-      status: JsonSerializable.boolParse(json["status"]),
+      status: JsonSerializableUtils.boolParse(json["status"]),
       message: json["message"],
       data: create(json["data"]),
     );

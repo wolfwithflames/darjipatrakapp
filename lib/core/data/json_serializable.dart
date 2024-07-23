@@ -1,4 +1,4 @@
-class JsonSerializable {
+class JsonSerializableUtils {
   static bool boolParse(dynamic value) {
     return value.toString() == "1";
   }

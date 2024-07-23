@@ -93,4 +93,6 @@ class GraduatedStudentModel {
       profileUrl.hashCode ^
       passingMarks.hashCode ^
       city.hashCode;
+
+  String? get fullName => "${name?.first} ${name?.last}";
 }

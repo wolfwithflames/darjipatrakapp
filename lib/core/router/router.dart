@@ -7,6 +7,7 @@ import '../../ui/views/auth/auth_screen.dart';
 import '../../ui/views/deceased_details/deceased_details_screen.dart';
 import '../../ui/views/deceased_list/deceased_list_screen.dart';
 import '../../ui/views/graduated_students/graduated_students_list_screen.dart';
+import '../../ui/views/matrimonial_users/matrimonial_users_screen.dart';
 import '../../ui/views/register/register_screen.dart';
 
 part 'router.gr.dart';
@@ -38,6 +39,10 @@ class AppRouter extends _$AppRouter {
           path: Routes.graduatedList,
           page: GraduatedStudentsListRoute.page,
         ),
+        AutoRoute(
+          path: Routes.matrimonialList,
+          page: MatrimonialListRoute.page,
+        ),
       ];
 }
 
@@ -49,4 +54,5 @@ class Routes {
   static const String deceasedList = "/deceasedList";
   static const String deceasedDetails = "/deceasedDetails";
   static const String graduatedList = "/graduatedList";
+  static const String matrimonialList = "/matrimonialList";
 }

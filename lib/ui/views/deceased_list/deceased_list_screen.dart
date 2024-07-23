@@ -25,24 +25,22 @@ class DeceasedListScreen extends StatelessWidget {
           appBar: AppBar(
             title: Text('${LocaleKeys.deceased.tr()} ${LocaleKeys.done.tr()}'),
           ),
-          body: SafeArea(
-            child: AppRefreshGridView(
-              refreshController: model.refreshController,
-              itemCount: model.deceased.length,
-              padding: const EdgeInsets.all(15),
-              itemBuilder: (context, index) {
-                final deceased = model.deceased[index];
-                return DeceasedItemView(
-                  deceased: deceased,
-                  onTap: model.onDeceasedPressed,
-                );
-              },
-              onRefresh: model.onRefresh,
-              onLoading: model.hasNext ? model.onLoad : null,
-              crossAxisCount: 2,
-              mainAxisSpacing: 15,
-              crossAxisSpacing: 15,
-            ),
+          body: AppRefreshGridView(
+            refreshController: model.refreshController,
+            itemCount: model.deceased.length,
+            padding: const EdgeInsets.all(15),
+            itemBuilder: (context, index) {
+              final deceased = model.deceased[index];
+              return DeceasedItemView(
+                deceased: deceased,
+                onTap: model.onDeceasedPressed,
+              );
+            },
+            onRefresh: model.onRefresh,
+            onLoading: model.hasNext ? model.onLoad : null,
+            crossAxisCount: 2,
+            mainAxisSpacing: 15,
+            crossAxisSpacing: 15,
           ),
         );
       },
