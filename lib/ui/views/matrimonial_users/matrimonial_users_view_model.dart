@@ -35,7 +35,7 @@ class MatrimonialListViewModel extends AppBaseViewModel {
     try {
       final response =
           await _matrimonialUserRepository.getMatrimonialUserList(page: pageNo);
-      if (response.status) {
+      if (response.success) {
         AppLog.i(response.data);
         if (isRefresh) {
           hasNext = true;

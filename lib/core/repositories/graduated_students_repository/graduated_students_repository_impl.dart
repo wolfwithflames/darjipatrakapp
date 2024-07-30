@@ -32,7 +32,7 @@ class GraduatedStudentsRepositoryImpl implements GraduatedStudentsRepository {
         final posts = await localDataSource.fetchGraduatedStudents();
 
         return ApiResponse<List<GraduatedStudentModel>>(
-          status: true,
+          success: true,
           data: posts,
         );
       }

@@ -35,7 +35,7 @@ class GraduatedStudentsListViewModel extends AppBaseViewModel {
     try {
       final response =
           await _deceasedRepository.getGraduatedStudentList(page: pageNo);
-      if (response.status) {
+      if (response.success) {
         if (isRefresh) {
           hasNext = true;
           page = 1;

@@ -25,7 +25,7 @@ class DashboardRepositoryImpl implements DashboardRepository {
         final users = await localDataSource.fetchDashboard();
 
         return ApiResponse<DashboardModel>(
-          status: true,
+          success: true,
           data: users,
         );
       }

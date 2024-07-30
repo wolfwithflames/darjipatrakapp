@@ -27,7 +27,7 @@ class DeceasedDetailsViewModel extends AppBaseViewModel {
     try {
       final response =
           await _deceasedRepository.getDeceasedDetails(id: deceasedId);
-      if (response.status) {
+      if (response.success) {
         _deceased = response.data;
       } else {
         botToast(response.message);

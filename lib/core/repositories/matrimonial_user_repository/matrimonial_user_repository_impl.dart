@@ -30,7 +30,7 @@ class MatrimonialUsersRepositoryImpl implements MatrimonialUsersRepository {
         final users = await localDataSource.fetchMatrimonialUsers();
 
         return ApiResponse<List<MatrimonialUser>>(
-          status: true,
+          success: true,
           data: users,
         );
       }

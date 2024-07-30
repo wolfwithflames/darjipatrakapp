@@ -218,7 +218,7 @@ class AuthViewModel extends AppBaseViewModel {
     try {
       final ApiResponse<user.User> loginResponse =
           await _usersRepository.loginUser(phone.trim().removeAllWhitespace);
-      if (loginResponse.status) {
+      if (loginResponse.success) {
         PrefsUtils.setAuthToken(loginResponse.data.token!);
         PrefsUtils.setUserData(loginResponse.data);
         if (!(loginResponse.data.isProfileCompleted ?? true)) {

@@ -35,7 +35,7 @@ class DeceasedListViewModel extends AppBaseViewModel {
     setViewState(ViewState.busy);
     try {
       final response = await _deceasedRepository.getDeceasedList(page: pageNo);
-      if (response.status) {
+      if (response.success) {
         if (isRefresh) {
           hasNext = true;
           page = 1;

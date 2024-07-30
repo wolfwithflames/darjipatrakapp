@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import '../../ui/views/app_navigator/app_navigator.dart';
 import '../../ui/views/app_wrapper/app_wrapper_screen.dart';
 import '../../ui/views/auth/auth_screen.dart';
+import '../../ui/views/dashboard/dashboard_screen.dart';
 import '../../ui/views/deceased_details/deceased_details_screen.dart';
 import '../../ui/views/deceased_list/deceased_list_screen.dart';
 import '../../ui/views/graduated_students/graduated_students_list_screen.dart';
@@ -22,8 +23,9 @@ class AppRouter extends _$AppRouter {
           initial: true,
           children: [
             AutoRoute(
-              path: Routes.auth,
-              page: AuthRoute.page,
+              path: Routes.dashboard,
+              page: DashboardRoute.page,
+              initial: true,
             ),
           ],
         ),
@@ -48,6 +50,7 @@ class AppRouter extends _$AppRouter {
 
 class Routes {
   static const String root = "/";
+  static const String dashboard = "dashboard";
   static const String appNav = "home";
   static const String auth = "auth";
   static const String register = "register";

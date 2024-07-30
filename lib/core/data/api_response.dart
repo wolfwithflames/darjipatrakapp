@@ -1,11 +1,11 @@
 import 'json_serializable.dart';
 
 class ApiResponse<T> {
-  bool status;
+  bool success;
   String message;
   T data;
   ApiResponse({
-    required this.status,
+    required this.success,
     this.message = "",
     required this.data,
   });
@@ -13,14 +13,14 @@ class ApiResponse<T> {
   factory ApiResponse.fromJson(
       Map<String, dynamic> json, Function(dynamic) create) {
     return ApiResponse<T>(
-      status: JsonSerializableUtils.boolParse(json["status"]),
+      success: JsonSerializableUtils.boolParse(json["status"]),
       message: json["message"],
       data: create(json["data"]),
     );
   }
 
   Map<String, dynamic> toJson() => {
-        "status": this.status,
+        "status": this.success,
         "message": this.message,
         "data": this.data,
       };

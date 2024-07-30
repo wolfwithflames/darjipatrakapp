@@ -31,7 +31,7 @@ class DeceasedRepositoryImpl implements DeceasedRepository {
       } else {
         final posts = await localDataSource.fetchDeceased();
         return ApiResponse<List<Deceased>>(
-          status: true,
+          success: true,
           data: posts,
         );
       }
